@@ -1,34 +1,38 @@
-
 name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - master
+      - master  # Trigger on push to the master branch (consider using 'main' if that's your default branch)
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    # Step 1: Checkout code
     - name: Checkout the code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to the latest version (v3)
 
+    # Step 2: Set up Docker Buildx for building multi-platform images
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
+    # Step 3: Log in to Docker Hub (with secrets stored in GitHub Actions secrets)
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with: 
-        username: ${{ secrets.DOCKER_USERNAME }}  
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub username stored in GitHub secrets
+        password: ${{ secrets.DOCKER_PASSWORD }}  # Docker Hub password stored in GitHub secrets
 
+    # Step 4: Build and push Docker image
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
-        context: .  
-        push: true
-        tags: abinbabu2001/blog-microservices:1
+        context: .  # Current directory
+        push: true  # Push the built image to Docker Hub
+        tags: abinbabu2001/blog-microservices:1  # Tag the image with version 1
 
+    # Step 5: Log out from Docker Hub to clean up
     - name: Log out from Docker Hub
       run: docker logout
