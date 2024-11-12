@@ -1,7 +1,7 @@
 const userModel = require('../model/userModel.js')
 const postModel = require('../model/postModel.js');
 const produce = require('../kafka/producer.js');
-
+//post controller
 const getPost = async (req, res) => {
     try {
         const postDetails = await postModel.find()
