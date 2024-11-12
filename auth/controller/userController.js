@@ -3,6 +3,7 @@ const userCollection = require('../model/userModel.js')
 
 const signup = async (req, res) => {
     try {
+        
         const { username, email, password, phone } = req.body
         const existingUser = await userCollection.findOne({
             $or: [{ email: email }, { phone: phone }]
