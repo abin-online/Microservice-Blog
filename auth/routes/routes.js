@@ -6,4 +6,4 @@ router.post('/api/userservice/signup',signup)
 router.post('/api/userservice/login',login)
 
 
-module.exports=router
+module.exports = router
