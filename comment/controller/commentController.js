@@ -1,6 +1,7 @@
 const userModel = require('../model/userModel.js')
 const postModel = require('../model/postModel.js')
 const commentModel = require('../model/commentModel.js')
+
 const addPost = async (post) => {
     try {
         console.log('post reached');
