@@ -20,6 +20,7 @@ async function consume() {
         if (topic === "add-post") {
           await addPost(value);
         }else if (topic === "add-user") {
+          console.log("value =>   " ,value)
           await addUser(value);
         }else if(topic==='delete-post'){
           console.log('delete-user topic');
