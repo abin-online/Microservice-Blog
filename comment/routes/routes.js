@@ -6,7 +6,7 @@ const router=express.Router()
 const authenticate = require('../../auth/middleware/authMiddleware.js')
 
 router.get('/api/commentservice/getcomment' , authenticate , getComment)
-router.post('/api/commentservice/comment', addComment)
+router.post('/api/commentservice/comment', authenticate , addComment)
 
 module.exports=router
 
